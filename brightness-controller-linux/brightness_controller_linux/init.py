@@ -895,6 +895,7 @@ class HelpForm(QtWidgets.QWidget):
         """assigns main_win as main_window"""
         self.main_window = main_win
 
+
 def main():
     UUID = 'PHIR-HWOH-MEIZ-AHTA'
     APP = QtSingleApplication(UUID, sys.argv)
@@ -903,8 +904,15 @@ def main():
     WINDOW = MyApplication()
     WINDOW.APP = APP
     APP.setActivationWindow(WINDOW)
-    WINDOW.show()
+    open_window(WINDOW, sys.argv[1:])
     sys.exit(APP.exec_())
+
+
+def open_window(WINDOW, args):
+    start_minimized = '--start-minimized' in args
+    if not start_minimized:
+        WINDOW.show()
+
 
 if __name__ == "__main__":
     main()
